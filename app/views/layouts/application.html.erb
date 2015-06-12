@@ -27,17 +27,20 @@
       <!-- Right Nav Section -->
       <ul class="right">
         <li class="has-form">
+        <form action="<%= user_session_path%>" method='POST'>
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
           <div class="row collapse">
             <div class="large-4 small-4 columns" style="margin-right: 5px;">
-              <input type="text" placeholder="Email">
+              <input type="email" name="email" placeholder="Email">
             </div>
             <div class="large-5 small-4 columns">
-              <input type="text" placeholder="Password">
+              <input type="password" name="password" placeholder="Password">
             </div>
             <div class="large-2 small-2 columns">
-              <a href="#" class="alert button expand">Login</a>
+              <button type="submit" class="alert button expand">Go</button>
             </div>
           </div>
+          </form>
         </li>
         
       </ul>

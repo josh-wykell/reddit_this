@@ -2,11 +2,11 @@
   <% if current_user %>
     <%= link_to new_post_path, class: 'btn btn-primary' do %>
       <span class="glyphicon glyphicon-plus"></span>
-      New Bookmark
+      New Post
     <% end %>
 
     <% unless params[:mine] %>
-      <%= link_to post_path(mine: true), class: 'btn btn-default' do %>
+      <%= link_to posts_path(mine: true), class: 'btn btn-default' do %>
         Mine
       <% end %>
     <% else %>
@@ -46,7 +46,7 @@
         <% if current_user %>
           <% if post.user == current_user %>
             <td>
-              <%= link_to edit_post_path(bookmark) do %>
+              <%= link_to edit_post_path(post) do %>
                 <span class="glyphicon glyphicon-pencil"></span>
               <% end %>
             </td>
@@ -60,12 +60,12 @@
             <td></td>
           <% end %>
           <td>
-            <% if current_user.upvote_posts.include?(post) %>
-              <%= link_to favorite_bookmark_path(post), method: 'delete' do %>
+            <% if current_user.voted_posts.include?(post) %>
+              <%= link_to vote_post_path(post), method: 'delete' do %>
                 <span class="glyphicon glyphicon-heart"></span>
               <% end %>
             <% else %>
-              <%= link_to upvote_post_path(post), method: 'put' do %>
+              <%= link_to vote_post_path(post), method: 'put' do %>
                 <span class="glyphicon glyphicon-heart-empty"></span>
               <% end %>
             <% end %>

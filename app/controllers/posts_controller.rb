@@ -39,7 +39,7 @@ class PostsController < ApplicationController
 
   def vote
     @post = Post.find(params[:id])
-    current_user.upvote_posts << @post
+    current_user.votes.create(:post => @post)
   end
 
   private

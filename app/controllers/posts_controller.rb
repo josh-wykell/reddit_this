@@ -38,6 +38,8 @@ class PostsController < ApplicationController
   end
 
   def vote
+    @post = Post.find(params[:id])
+    current_user.upvote_posts << @post
   end
 
   private

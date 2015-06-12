@@ -1,1 +1,81 @@
-<h1>Eat This Reddit</h1>
+<div class="page-header">
+  <% if current_user %>
+    <%= link_to new_post_path, class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      New Bookmark
+    <% end %>
+
+    <% unless params[:mine] %>
+      <%= link_to post_path(mine: true), class: 'btn btn-default' do %>
+        Mine
+      <% end %>
+    <% else %>
+      <%= link_to posts_path, class: 'btn btn-default' do %>
+        All
+      <% end %>
+    <% end %>
+  <% end %>
+  <h1>Listing Posts</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th></th>
+        <% if current_user %>
+          <th></th>
+          <th></th>
+          <th>Fav?</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <%= content_tag_for(:tr, @posts) do |post| %>
+        <td><%= post.user.try(:email) %></td>
+        <td><%= link_to truncate(post.title, length: 120), post.url %></td>
+        <td><%= truncate post.description, length: 120, separator: ' ' %></td>
+        <td>
+          <%= link_to post do %>
+            <span class="glyphicon glyphicon-eye-open"></span>
+          <% end %>
+        </td>
+        <% if current_user %>
+          <% if post.user == current_user %>
+            <td>
+              <%= link_to edit_post_path(bookmark) do %>
+                <span class="glyphicon glyphicon-pencil"></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <span class="glyphicon glyphicon-trash"></span>
+              <% end %>
+            </td>
+          <% else %>
+            <td></td>
+            <td></td>
+          <% end %>
+          <td>
+            <% if current_user.favorite_posts.include?(post) %>
+              <%= link_to favorite_bookmark_path(post), method: 'delete' do %>
+                <span class="glyphicon glyphicon-heart"></span>
+              <% end %>
+            <% else %>
+              <%= link_to favorite_post_path(post), method: 'put' do %>
+                <span class="glyphicon glyphicon-heart-empty"></span>
+              <% end %>
+            <% end %>
+          </td>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <%= paginate @posts %>
+  
+</div>
+

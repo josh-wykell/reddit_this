@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     put    'vote', :on => :member
   end
 
-  root 'home#index'
+  root 'posts#index'
 end

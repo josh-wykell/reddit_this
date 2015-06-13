@@ -31,14 +31,8 @@
           <form action="<%= user_session_path %>" method='POST'>
             <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
             <div class="row collapse">
-              <div class="large-4 small-4 columns" style="margin-right: 5px;">
-                <input type="email" name="email" placeholder="Email">
-              </div>
-              <div class="large-5 small-4 columns">
-                <input type="password" name="password" placeholder="Password">
-              </div>
               <div class="large-2 small-2 columns">
-                <button type="submit" name="commit" class="alert button expand">Go</button>
+                <button type="submit" name="commit" class="alert button expand">Log In</button>
              </div>
             </div>
           </form>

@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   end 
 
   def create
-    @post = current_user.posts.create
+    @post = current_user.posts.create(post_params)
 
       if @post.save
         redirect_to @post, notice: 'Post Added'
@@ -29,8 +29,8 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update(bookmark_params)
-      redirect_to @post, notice: 'Bookmark was successfully updated.'
+    if @post.update(post_params)
+      redirect_to @post, notice: 'Post was successfully updated.'
     else
       render :edit
     end

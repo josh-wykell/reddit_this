@@ -1,0 +1,27 @@
+<div class="page-header">
+  <%= link_to posts_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <% if current_user %>
+    <%= link_to edit_post_path(@post), class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+      Edit
+    <% end %>
+  <% end %>
+  <h1>Show Post</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>User:</dt>
+  <dd><%= @post.user.try(:email) %></dd>
+
+  <dt>Url:</dt>
+  <dd><%= @post.url %></dd>
+
+  <dt>Title:</dt>
+  <dd><%= @post.title %></dd>
+
+  <dt>Description:</dt>
+  <dd><%= @post.description %></dd>
+</dl>

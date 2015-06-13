@@ -12,13 +12,17 @@ class PostsController < ApplicationController
   end 
 
   def create
-    @post = current_user.posts.new
+    @post = current_user.posts.create
 
       if @post.save
         redirect_to @post, notice: 'Post Added'
       else 
         render :new
       end
+  end
+
+  def new
+    @post = current_user.posts.new
   end
 
   def edit

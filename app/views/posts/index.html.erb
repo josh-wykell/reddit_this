@@ -6,17 +6,8 @@
       <span class="glyphicon glyphicon-plus"></span>
       New Post
     <% end %>
-
-    <% unless params[:mine] %>
-      <%= link_to posts_path(mine: true), class: 'btn btn-default' do %>
-        Mine
-      <% end %>
-    <% else %>
-      <%= link_to posts_path, class: 'btn btn-default' do %>
-        All
-      <% end %>
-    <% end %>
   <% end %>
+
   <h1>Listing Posts</h1>
 </div>
 

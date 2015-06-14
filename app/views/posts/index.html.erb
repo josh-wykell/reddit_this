@@ -53,11 +53,11 @@
           <% end %>
           
           <td>
-            <%= link_to downvote_post_path(post), method: 'delete' do %>
-            <i class="fi-arrow-down"></i>
+            <%= link_to vote_post_path(post), method: 'delete' do %>
+              <i class="fi-arrow-down"></i>
               <% end %>
-            <%= link_to upvote_post_path(post), method: 'put' do %>
-            <i class="fi-arrow-up"></i>
+            <%= link_to vote_post_path(post), method: 'put' do %>
+              <i class="fi-arrow-up"></i>
             <% end %>
           </td>
         <% end %>

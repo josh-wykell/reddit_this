@@ -1,0 +1,13 @@
+* Users can sign up/recover passwords/etc. (hint: use Devise)
+*Links belong to the user who submitted them.
+ jw-Each link should have many votes associated with it.
+ jw-Clicking on up-vote for link should contribute to a positive score.
+ jw-The front page should order by the score of an item (sum of it's votes).
+ links on the homepage should be paginated. (hint: use Kaminari)
+ dd-Other users should be able to comment on links. Comments do not need to be nested (that's a bonus item).
+  * Make it look nice, Bootstrap, hand-rolled, etc.
+dd- Visitors can browse links and see comments, but they cannot create anything.
+ Fill your database in production (on Heroku) with many content. Consider working with the whole class to ask your peers to submit links and comment on each others apps. This will also help you find and discover bugs.
+
+dd-create comments link
+dd-create a placeholder in the table for vote total

@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :posts
-  has_many :votes
+  has_many :upvotes
+  has_many :downvotes
   has_many :comments
   has_many :voted_posts, :through => :votes, :source => :post
 end

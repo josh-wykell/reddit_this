@@ -43,12 +43,22 @@ class PostsController < ApplicationController
 
   def upvote
     @post = Post.find(params[:id])
-    current_user.upvotes.create(:post => @post)
+    if current_user.downvoted_posts.include?(@post)
+      current_user.downvoted_posts.delete(@post)
+      current_user.upvotes.create(:post => @post)
+    else
+      current_user.upvotes.create(:post => @post)
+    end
   end
 
   def downvote
     @post = Post.find(params[:id])
-    current_user.downvotes.create(:post => @post)
+    if current_user.upvoted_posts.include?(@post)
+      current_user.upvoted_posts.delete(@post)
+      current_user.downvotes.create(:post => @post)
+    else
+      current_user.downvotes.create(:post => @post)
+    end
   end
 
   private

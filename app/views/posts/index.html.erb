@@ -30,27 +30,14 @@
         <%= link_to post do %>
         <i class="fa fa-eye"></i>
         <% end %>
-<<<<<<< HEAD
 
-        <% if current_user %>
-        <% if post.user == current_user %>
-        
-        <%= link_to edit_post_path(post) do %>
-        <i class="fa fa-pencil"></i>
-        <% end %>
-
-        <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' } do %>
-        <i class="fa fa-trash"></i>
-        <% end %>
-        
-        
-        <i class="fa fa-comment"></i>
-
-        <% else %>
-        <% end %>
-=======
->>>>>>> f0b5eb515fd89b0b3b5e695ea755d6d467768cda
       </td>
+
+      <td>
+        <%= link_to post do %>
+        <i class="fa fa-comment"></i>
+        <% end %>
+      <td>
 
         <% if current_user %>
           <% if post.user == current_user %>

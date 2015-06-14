@@ -1,57 +1,37 @@
+<p id="notice"><%= notice %></p>
+
 <div class="page-header">
-  <%= link_to posts_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <% if current_user %>
-    <%= link_to edit_post_path(@post), class: 'btn btn-primary' do %>
-      <span class="glyphicon glyphicon-pencil"></span>
-      Edit
-    <% end %>
-  <% end %>
-  <h1>Show Post</h1>
+  <h1>Comments</h1>
 </div>
-
-<dl class="dl-horizontal">
-  <dt>User:</dt>
-  <dd><%= @post.user.try(:email) %></dd>
-
-  <dt>Url:</dt>
-  <dd><%= @post.url %></dd>
-
-  <dt>Title:</dt>
-  <dd><%= @post.title %></dd>
-
-  <dt>Description:</dt>
-  <dd><%= @post.description %></dd>
 
 <ul>
   <% @post.comments.each do |comment| %>
     <li>
       <p><%= comment.body %></p>
-      <p class="author">by <%= comment.author %> on <%= comment.created_at.to_s(:short) %></p>
+      <p class="author">by Jim on <%= comment.created_at.to_s(:short) %></p>
+      
+      <% if comment.user == current_user %>
       <p>
         <%= link_to "x", post_comment_path(@post, comment), { :method => :delete }  %>
       </p>
+      <% end %>
     </li>
   <% end %>
 </ul>
 
-<%= form_for(@post.comments.new, :url => comments_create_path(@post)) do |f| %>
-  <div class="field">
-    <%= f.label :author %><br>
-    <%= f.text_field :author %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<% if current_user %>
+  <%= form_for(@post.comments.new, :url => post_comments_path(@post)) do |f| %>
+    <div class="field">
+      <%= f.label :body %><br>
+      <%= f.text_area :body %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
 <% end %>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
+
 <%= link_to 'Back', posts_path %>
 
 </dl>

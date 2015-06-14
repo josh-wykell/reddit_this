@@ -24,4 +24,34 @@
 
   <dt>Description:</dt>
   <dd><%= @post.description %></dd>
+
+<ul>
+  <% @post.comments.each do |comment| %>
+    <li>
+      <p><%= comment.body %></p>
+      <p class="author">by <%= comment.author %> on <%= comment.created_at.to_s(:short) %></p>
+      <p>
+        <%= link_to "x", post_comment_path(@post, comment), { :method => :delete }  %>
+      </p>
+    </li>
+  <% end %>
+</ul>
+
+<%= form_for(@post.comments.new, :url => comments_create_path(@post)) do |f| %>
+  <div class="field">
+    <%= f.label :author %><br>
+    <%= f.text_field :author %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
+
 </dl>

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %>
+
+<%= form_for(@post.comments.new, :url => post_comments_path(@post)) do |f| %>
+  <div class="field">
+    <%= f.label :author %><br>
+    <%= f.text_field :author %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<ul>
+  <% @post.comments.each do |comment| %>
+    <li>
+      <p><%= comment.body %></p>
+      <p class="author">by <%= comment.author %> on <%= comment.created_at.to_s(:short) %></p>
+    </li>
+  <% end %>
+</ul>
+

@@ -2,10 +2,10 @@
 
 <div class="page-header">
   <% if current_user %>
-  <%= link_to new_post_path, class: 'btn btn-primary' do %>
-  <i class="fa fa-plus"></i>
-  New Post
-  <% end %>
+    <%= link_to new_post_path, class: 'btn btn-primary' do %>
+    <i class="fa fa-plus"></i>
+    New Post
+    <% end %>
   <% end %>
 
   <h1>Listing Posts</h1>
@@ -18,12 +18,9 @@
         <th>User</th>
         <th>Title</th>
         <th>Description</th>
-        
-        <% if current_user %>
-
-        <% end %>
       </tr>
     </thead>
+
     <tbody>
       <%= content_tag_for(:tr, @post) do |post| %>
       <td><%= post.user.try(:email) %></td>
@@ -33,38 +30,26 @@
         <%= link_to post do %>
         <i class="fa fa-eye"></i>
         <% end %>
+      </td>
 
         <% if current_user %>
-        <% if post.user == current_user %>
-        
-        <%= link_to edit_post_path(post) do %>
-        <i class="fa fa-pencil"></i>
-        <% end %>
+          <% if post.user == current_user %>
 
-        <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' } do %>
-        <i class="fa fa-trash"></i>
-        <% end %>
+            <td>
+              <%= link_to edit_post_path(post) do %>
+              <i class="fa fa-pencil"></i>
+              <% end %>
 
-        <% else %>
+              <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="fa fa-trash"></i>
+              <% end %>
+            </td>
+          <% else %>
+            <td></td>
+          <% end %>
         <% end %>
-      </td>
-
-      <td>
-        <%= link_to vote_post_path(post), method: 'delete' do %>
-        <i class="fa fa-arrow-down"></i>
-        <% end %>
-
-        <%= link_to vote_post_path(post), method: 'put' do %>
-        <i class="fa fa-arrow-up"></i>
-        <% end %>
-        12345 votes!
-      </td>
-      <% end %>
       <% end %>
     </tbody>
-  </table>
-  
-  
-  
+  </table>  
 </div>
 

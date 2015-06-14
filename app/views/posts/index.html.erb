@@ -32,19 +32,19 @@
         <td><%= truncate post.description, length: 120, separator: ' ' %></td>
         <td>
           <%= link_to post do %>
-            <span class="glyphicon glyphicon-eye-open"></span>
+            <i class="fa fa-eye"></i>
           <% end %>
         </td>
         <% if current_user %>
           <% if post.user == current_user %>
             <td>
               <%= link_to edit_post_path(post) do %>
-                <span class="glyphicon glyphicon-pencil"></span>
+                <i class="fa fa-pencil"></i>
               <% end %>
             </td>
             <td>
               <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                <span class="glyphicon glyphicon-trash"></span>
+                <i class="fa fa-trash"></i>
               <% end %>
             </td>
           <% else %>
@@ -54,10 +54,10 @@
           
           <td>
             <%= link_to vote_post_path(post), method: 'delete' do %>
-              <i class="fi-arrow-down"></i>
+              <i class="fa fa-arrow-down"></i>
               <% end %>
             <%= link_to vote_post_path(post), method: 'put' do %>
-              <i class="fi-arrow-up"></i>
+              <i class="fa fa-arrow-up"></i>
             <% end %>
           </td>
         <% end %>

@@ -11,9 +11,9 @@ Rails.application.routes.draw do
     resources :comments, :only => [:create, :destroy]
     delete 'vote', :on => :member, :action => 'downvote'
     put    'vote', :on => :member, :action => 'upvote'
-
-  
   end
+
+  post 'posts/update' => "posts#update"
 
   root 'posts#index'
 end

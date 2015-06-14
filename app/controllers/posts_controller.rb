@@ -41,9 +41,14 @@ class PostsController < ApplicationController
     redirect_to posts_url, notice: 'Post Deleted'
   end
 
-  def vote
+  def upvote
     @post = Post.find(params[:id])
-    current_user.votes.create(:post => @post)
+    current_user.upvotes.create(:post => @post)
+  end
+
+  def downvote
+    @post = Post.find(params[:id])
+    current_user.downvotes.create(:post => @post)
   end
 
   private

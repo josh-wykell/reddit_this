@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   def index
     #@post = Post.all
-    @post = Post.page(params[:page]).per(5)
+    @post = Post.page(params[:page]).order(votes_count: :desc).per(5)
   end
 
   def show

@@ -56,7 +56,6 @@ class PostsController < ApplicationController
   def upvote
     @post = Post.find(params[:id])
     current_user.voted_posts << @post
-    @post.tally = @post.tally += 1
     # @bookmark = Bookmark.find(params[:id])
     # current_user.favorite_bookmarks << @bookmark
     redirect_to posts_url, notice: 'upvoted'

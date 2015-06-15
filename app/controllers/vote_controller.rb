@@ -1,2 +1,4 @@
 class VoteController < ApplicationController
+
+  
 end

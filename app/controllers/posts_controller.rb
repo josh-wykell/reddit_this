@@ -41,9 +41,22 @@ class PostsController < ApplicationController
     redirect_to posts_url, notice: 'Post Deleted'
   end
 
+  # def upvote
+  #   @post = Post.find(params[:id])
+  #   @post.votes.create
+  #   redirect_to(posts_path)
+  # end
+
+  # def downvote
+  #   @post = Post.find(params[:id])
+  #   @post.votes.delete
+  #   redirect_to(posts_path)
+  # end
+
   def upvote
     @post = Post.find(params[:id])
     current_user.voted_posts << @post
+    @post.tally = @post.tally += 1
     # @bookmark = Bookmark.find(params[:id])
     # current_user.favorite_bookmarks << @bookmark
     redirect_to posts_url, notice: 'upvoted'

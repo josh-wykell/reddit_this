@@ -48,16 +48,13 @@
             <td></td>
           <% end %>
           <td>
-            <% if current_user.voted_posts.include?(post) %>
-              <%= link_to vote_post_path(post), method: 'delete' do %>
-                <i class="fa fa-arrow-down"></i>
-              <% end %>
-            <% else %>
-              <%= link_to vote_post_path(post), method: 'put' do %>
-                <i class="fa fa-arrow-up"></i>
-              <% end %>
+            <%= link_to vote_post_path(post), method: 'delete' do %>
+              <i class="fa fa-arrow-down"></i>
             <% end %>
-              12345 votes!
+            <%= pluralize(post.votes.count, "vote") %>
+            <%= link_to vote_post_path(post), method: 'put' do %>
+              <i class="fa fa-arrow-up"></i>
+            <% end %>   
           </td>
         <% end %>
       <% end %>

@@ -2,10 +2,10 @@
 
 <div class="page-header">
   <% if current_user %>
-    <%= link_to new_post_path, class: 'btn btn-primary' do %>
-    <i class="fa fa-plus"></i>
-    New Post
-    <% end %>
+  <%= link_to new_post_path, class: 'btn btn-primary' do %>
+  <i class="fa fa-plus"></i>
+  New Post
+  <% end %>
   <% end %>
 
   <h1>Listing Posts</h1>
@@ -30,35 +30,34 @@
         <%= link_to post do %>
         <i class="fa fa-comment"></i>
         <% end %>
-      <td>
 
-        <% if current_user %>
+          <% if current_user %>
           <% if post.user == current_user %>
 
-            <td>
-              <%= link_to edit_post_path(post) do %>
-              <i class="fa fa-pencil"></i>
-              <% end %>
+            <%= link_to edit_post_path(post) do %>
+            <i class="fa fa-pencil"></i>
+            <% end %>
 
-              <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <i class="fa fa-trash"></i>
-              <% end %>
-            </td>
+            <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="fa fa-trash"></i>
+            <% end %>
+          </td>
           <% else %>
-            <td></td>
+          <td></td>
           <% end %>
           <td>
             <%= link_to vote_post_path(post), method: 'delete' do %>
-              <i class="fa fa-arrow-down"></i>
+            <i class="fa fa-arrow-down"></i>
             <% end %>
             <%= pluralize(post.votes.count, "vote") %>
             <%= link_to vote_post_path(post), method: 'put' do %>
-              <i class="fa fa-arrow-up"></i>
+            <i class="fa fa-arrow-up"></i>
             <% end %>   
           </td>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>  
-</div>
+          <% end %>
+          <% end %>
+        </tbody>
+      </table>
+       <%= paginate @post %> 
+    </div>
 

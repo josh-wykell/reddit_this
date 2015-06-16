@@ -15,7 +15,7 @@ gem 'puma'
 gem 'foundation-rails'
 gem 'devise'
 gem 'kaminari'
-
+gem 'mandrill-api'
 
 group :development, :test do
   gem 'byebug'

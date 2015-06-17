@@ -37,10 +37,16 @@
         <%= link_to vote_post_path(post), method: 'delete' do %>
         <i class="fa fa-arrow-down"></i>
         <% end %>
+
         <%= pluralize(post.votes.count, "vote") %>
-        <%= link_to vote_post_path(post), method: 'put' do %>
+        
+        <% unless current_user.voted_posts.include?(post) %>
+          <%= link_to vote_post_path(post), method: 'put' do %>
+            <i class="fa fa-arrow-up"></i>
+          <% end %> 
+        <% else %>
         <i class="fa fa-arrow-up"></i>
-        <% end %> 
+        <% end %>
       </td>
 
       <% if current_user %>

@@ -2,5 +2,5 @@ class Vote < ActiveRecord::Base
   belongs_to :user
   belongs_to :post, :counter_cache => true
 
-  validates_uniqueness_of :user_id
+  validates_uniqueness_of :post_id, :scope => :user_id
 end

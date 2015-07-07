@@ -8,13 +8,30 @@
   <% @post.comments.each do |comment| %>
     <li>
       <p><%= comment.body %></p>
-      <p class="author">by <%= comment.user(:name) %> on <%= comment.created_at.to_s(:short) %></p>
+      <p class="author">by <%= comment.user %> on <%= comment.created_at.to_s(:short) %></p>
       
       <% if comment.user == current_user %>
       <p>
         <%= link_to "x", post_comment_path(@post, comment), { :method => :delete }  %>
       </p>
       <% end %>
+    </li>
+    <li>
+      <% if current_user && current_user.voted_comments.include?(comment)%>
+          <%= link_to vote_path(vote:{voteable_id: comment.id, voteable_type: "Comment"}), method: 'delete' do %>
+          <i class="fa fa-arrow-down"></i>
+          <% end %>
+        <% else %>
+          <i class="fa fa-arrow-down"></i>
+        <% end %>
+        <%= pluralize(comment.votes.count, "vote") %>
+        <% unless current_user && current_user.voted_comments.include?(comment) %>
+          <%= link_to vote_path(vote:{voteable_id: comment.id, voteable_type: "Comment"}), method: 'post' do %>
+            <i class="fa fa-arrow-up"></i>
+          <% end %> 
+        <% else %>
+        <i class="fa fa-arrow-up"></i>
+        <% end %>
     </li>
   <% end %>
 </ul>

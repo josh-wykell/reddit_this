@@ -35,7 +35,7 @@
 
       <td>
         <% if current_user && current_user.voted_posts.include?(post)%>
-          <%= link_to vote_post_path(post), method: 'delete' do %>
+          <%= link_to vote_path(vote:{voteable_id: post.id, voteable_type: "Post"}), method: 'delete' do %>
           <i class="fa fa-arrow-down"></i>
           <% end %>
         <% else %>
@@ -43,7 +43,7 @@
         <% end %>
         <%= pluralize(post.votes.count, "vote") %>
         <% unless current_user && current_user.voted_posts.include?(post) %>
-          <%= link_to vote_post_path(post), method: 'put' do %>
+          <%= link_to vote_path(vote:{voteable_id: post.id, voteable_type: "Post"}), method: 'post' do %>
             <i class="fa fa-arrow-up"></i>
           <% end %> 
         <% else %>

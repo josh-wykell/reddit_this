@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617202410) do
+ActiveRecord::Schema.define(version: 20150706190637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(version: 20150617202410) do
     t.integer  "post_id"
     t.integer  "user_id"
     t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "votes_count", default: 0
   end
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
@@ -86,18 +87,19 @@ ActiveRecord::Schema.define(version: 20150617202410) do
   add_index "views", ["reset_password_token"], name: "index_views_on_reset_password_token", unique: true, using: :btree
 
   create_table "votes", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "user_id"
-    t.integer  "post_id"
+    t.integer  "voteable_id"
+    t.string   "voteable_type"
   end
 
-  add_index "votes", ["post_id"], name: "index_votes_on_post_id", using: :btree
   add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
+  add_index "votes", ["voteable_id"], name: "index_votes_on_voteable_id", using: :btree
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "posts", "users"
-  add_foreign_key "votes", "posts"
+  add_foreign_key "votes", "posts", column: "voteable_id"
   add_foreign_key "votes", "users"
 end

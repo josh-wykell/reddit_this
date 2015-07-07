@@ -1,8 +1,8 @@
 class Post < ActiveRecord::Base
+  include Voteable
+
   belongs_to :user
   has_many :comments
-  has_many :votes
-
   
   validates :url, presence: true
 end

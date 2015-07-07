@@ -8,7 +8,7 @@
   <% @post.comments.each do |comment| %>
     <li>
       <p><%= comment.body %></p>
-      <p class="author">by Jim on <%= comment.created_at.to_s(:short) %></p>
+      <p class="author">by <%= comment.user(:name) %> on <%= comment.created_at.to_s(:short) %></p>
       
       <% if comment.user == current_user %>
       <p>

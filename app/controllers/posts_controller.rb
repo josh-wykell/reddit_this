@@ -54,21 +54,21 @@ class PostsController < ApplicationController
   #   redirect_to(posts_path)
   # end
 
-  def upvote
-    @post = Post.find(params[:id])
-    current_user.voted_posts << @post
-    # @bookmark = Bookmark.find(params[:id])
-    # current_user.favorite_bookmarks << @bookmark
-    redirect_to posts_url, notice: 'upvoted'
-  end
+  # def upvote
+  #   @post = Post.find(params[:id])
+  #   current_user.voted_posts << @post
+  #   # @bookmark = Bookmark.find(params[:id])
+  #   # current_user.favorite_bookmarks << @bookmark
+  #   redirect_to posts_url, notice: 'upvoted'
+  # end
 
-  def downvote
-    @post = Post.find(params[:id])
-    current_user.voted_posts.delete(@post)
-    # @bookmark = Bookmark.find(params[:id])
-    # current_user.favorite_bookmarks.delete(@bookmark)
-    redirect_to posts_url, notice: 'downvoted'
-  end
+  # def downvote
+  #   @post = Post.find(params[:id])
+  #   current_user.voted_posts.delete(@post)
+  #   # @bookmark = Bookmark.find(params[:id])
+  #   # current_user.favorite_bookmarks.delete(@bookmark)
+  #   redirect_to posts_url, notice: 'downvoted'
+  # end
 
   private
 
